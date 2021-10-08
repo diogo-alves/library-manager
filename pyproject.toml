@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "library-manager"
+version = "0.1.0"
+description = "A library manager"
+authors = ["Diogo Alves <diogo.alves.ti@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+Django = "^3.2.8"
+python-decouple = "^3.5"
+dj-database-url = "^0.5.0"
+psycopg2-binary = "^2.9.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
