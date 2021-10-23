@@ -44,6 +44,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'drf_spectacular',
 ]
 
 LOCAL_APPS = [
@@ -153,5 +154,15 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/minute',
         'user': '1000/minute',
-    }
+    },
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
+# https://drf-spectacular.readthedocs.io/en/latest/readme.html
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Library-manager API',
+    'DESCRIPTION': 'A library system to manage books and authors data',
+    'VERSION': '1.0.0',
 }
