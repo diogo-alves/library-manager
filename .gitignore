@@ -12,6 +12,10 @@ db.sqlite3
 db.sqlite3-journal
 media
 
+# VS Code
+.vscode/
+
+# tests
 *.csv
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
