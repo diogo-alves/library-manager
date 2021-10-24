@@ -15,6 +15,7 @@ pytest-django = "^4.4.0"
 pytest-mock = "^3.6.1"
 djangorestframework = "^3.12.4"
 drf-spectacular = "^0.20.2"
+django-cors-headers = "^3.10.0"
 
 [tool.poetry.dev-dependencies]
 
