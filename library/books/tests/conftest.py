@@ -1,6 +1,6 @@
 import pytest
 
-from ..models import Author
+from ..models import Author, Book
 
 
 @pytest.fixture
@@ -26,3 +26,13 @@ def authors(db):
         Author(name='Vinicius de Moraes'),
         Author(name='Clarice Lispector'),
     ])
+
+@pytest.fixture
+def book(db, author):
+    new_book = Book.objects.create(
+        name='Vidas Secas',
+        edition=1,
+        publication_year=1938,
+    )
+    new_book.authors.add(author)
+    return new_book
