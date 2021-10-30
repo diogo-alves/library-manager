@@ -1,8 +1,9 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.viewsets import ModelViewSet
 
-from .models import Author
-from .serializers import AuthorSerializer
+from .models import Author, Book
+from .serializers import AuthorSerializer, BookSerializer
 
 
 class AuthorPagination(PageNumberPagination):
@@ -14,3 +15,8 @@ class AuthorListAPIView(ListAPIView):
     pagination_class = AuthorPagination
     serializer_class = AuthorSerializer
     search_fields = ['name']
+
+
+class BookViewSet(ModelViewSet):
+    queryset = Book.objects.prefetch_related('authors')
+    serializer_class = BookSerializer
