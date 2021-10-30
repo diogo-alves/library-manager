@@ -30,6 +30,46 @@ class TestBookViewSet:
         assert response.status_code == status.HTTP_200_OK
         assert len(response.data) == 5
 
+    def test_list_should_allow_filtering_by_name(self, client, books):
+        url = reverse('books:book-list')
+        payload = {'name__icontains': 'vidas secas'}
+        response = client.get(url, data=payload)
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.data) == 2
+
+    def test_list_should_allow_filtering_by_publication_year(self, client, books):
+        url = reverse('books:book-list')
+        payload = {'publication_year': 1880}
+        response = client.get(url, data=payload)
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.data) == 1
+
+    def test_list_should_allow_filtering_by_edition(self, client, books):
+        url = reverse('books:book-list')
+        payload = {'edition': 1}
+        response = client.get(url, data=payload)
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.data) == 4
+
+    def test_list_should_allow_filtering_by_author(self, client, books):
+        url = reverse('books:book-list')
+        payload = {'authors__name__icontains': 'Machado'}
+        response = client.get(url, data=payload)
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.data) == 2
+
+    def test_list_should_allow_composite_filtering(self, client, books):
+        url = reverse('books:book-list')
+        payload = {
+            'name__icontains': 'Vidas',
+            'publication_year': 1938,
+            'edition': 1,
+            'authors__name__icontains': 'Graciliano'
+        }
+        response = client.get(url, data=payload)
+        assert response.status_code == status.HTTP_200_OK
+        assert len(response.data) == 1
+
     def test_create(self, client, author):
         url = reverse('books:book-list')
         payload = {
